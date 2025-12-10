@@ -11,15 +11,16 @@ HDRSFILES = \
 						data_buffer.hpp \
 
 SRCSFILES = \
+						test.cpp \
 						data_buffer.cpp \
 
-HDRS = $(addprefix $(INCSPATH), $(HDRSFILES))
+#HDRS = $(addprefix $(INCSPATH), $(HDRSFILES))
 SRCS = $(addprefix $(SRCSPATH), $(SRCSFILES))
 OBJS = $(patsubst $(SRCSPATH)%.cpp, $(OBJSPATH)%.o, $(SRCS))
 
 INC = -I $(INCSPATH)
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++17
 AR = ar rcs
 RM = rm -rf
 

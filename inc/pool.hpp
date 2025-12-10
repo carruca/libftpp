@@ -3,12 +3,15 @@
 
 # include <cstddef>
 
-template<typename TType>
+  template<typename TType>
 class Pool
 {
 public:
+  template<TType>
   class Object
   {
+    Object() : pointer{nullptr} {}
+
     TType *pointer;
 
     TType *
@@ -25,11 +28,11 @@ public:
   }
 
   template<typename ... TArgs>
-  Object
+  Object<TType>
   acquire(TArgs&&... p_args)
   {
     ((void)p_args, ...);
-    return Object{};
+    return Object<TType>{};
   }
 };
 
