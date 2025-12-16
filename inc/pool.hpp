@@ -32,6 +32,8 @@ public:
     {
       if (pointer != nullptr && pool != nullptr)
         pool->release(pointer);
+      pointer = nullptr;
+      pool = nullptr;
     }
 
     Object&
@@ -72,36 +74,56 @@ public:
   };
 
   Pool() {}
-  Pool(const Pool& other) { (void)other; }
-
-  ~Pool() {}
-
+  Pool(const Pool& other) = delete;
   Pool&
-  operator=(const Pool& other)
+  operator=(const Pool& other) = delete;
+
+
+  ~Pool()
   {
-    (void)other;
-    return *this;
+    for (TType* pointer : allocated)
+    {
+      ::operator delete(pointer);
+    }
   }
 
   void
   resize(const std::size_t& numberOfObjectStored)
   {
-    (void)numberOfObjectStored;
+    for (std::size_t i = 0; i < numberOfObjectStored; ++i)
+    {
+      TType* pointer = static_cast<TType*>(::operator new(sizeof(TType)));
+      allocated.push_back(pointer);
+      available.push(pointer);
+    }
   }
 
   template<typename ... TArgs>
   Object
   acquire(TArgs&&... p_args)
   {
-    ((void)p_args, ...);
-    return Object{};
+    TType* pointer = nullptr;
+
+    if (!available.empty())
+    {
+      pointer = available.top();
+      available.pop();
+    }
+    else
+    {
+      pointer = static_cast<TType*>(::operator new(sizeof(TType)));
+      allocated.push_back(pointer);
+    }
+    new (pointer) TType(std::forward<TArgs>(p_args)...);
+    return Object(pointer, this);
   }
 
 private:
   void
   release(TType* pointer)
   {
-    (void)pointer;
+    pointer->~TType();
+    available.push(pointer);
   }
 };
 
