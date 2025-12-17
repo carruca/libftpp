@@ -1,5 +1,28 @@
-int main() {
-    // This is a placeholder for the main function.
-    // The actual implementation will depend on the specific requirements of the data buffer.
-    return 0;
+#include "data_buffer.hpp"
+
+DataBuffer::DataBuffer() {}
+
+DataBuffer::DataBuffer(const DataBuffer& other)
+{
+    if (this != &other) {}
 }
+
+DataBuffer::DataBuffer(DataBuffer&& other) noexcept
+{
+    if (this != &other) {}
+}
+
+DataBuffer& DataBuffer::operator=(const DataBuffer& other)
+{
+    if (this != &other) {}
+    return *this;
+}
+
+DataBuffer& DataBuffer::operator=(DataBuffer&& other) noexcept
+{
+    if (this != &other) {}
+    return *this;
+}
+
+DataBuffer::~DataBuffer() {}
+
