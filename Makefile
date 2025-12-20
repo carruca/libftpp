@@ -60,4 +60,4 @@ sanitize: $(NAME) $(TESTNAME)
 test: $(NAME) $(TESTOBJS)
 	$(CXX) $(CXXFLAGS) $(INC) -o $(TESTNAME) $(TESTOBJS) $(LDFLAGS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test sanitize
