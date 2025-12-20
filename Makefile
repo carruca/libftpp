@@ -55,7 +55,7 @@ fclean: clean
 re: fclean all
 
 sanitize: CXXFLAGS += $(FSANITIZE)
-sanitize: $(NAME) test
+sanitize: $(NAME) $(TESTNAME)
 
 test: $(NAME) $(TESTOBJS)
 	$(CXX) $(CXXFLAGS) $(INC) -o $(TESTNAME) $(TESTOBJS) $(LDFLAGS)
