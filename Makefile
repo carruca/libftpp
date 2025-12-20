@@ -1,5 +1,5 @@
 NAME = libftpp.a
-TESTNAME = pool_test
+TESTNAME = program-test
 
 INCSPATH = inc/
 SRCSPATH = src/
@@ -16,7 +16,7 @@ SRCSFILES = \
 						data_buffer.cpp \
 
 TESTFILES = \
-						main_pool.cpp \
+						main_data_buffer.cpp \
 
 
 #HDRS = $(addprefix $(INCSPATH), $(HDRSFILES))
