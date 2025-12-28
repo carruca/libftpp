@@ -11,12 +11,15 @@ HDRSFILES = \
 						data_structures.hpp \
 						pool.hpp \
 						data_buffer.hpp \
+						memento.hpp \
 
 SRCSFILES = \
 						data_buffer.cpp \
+						memento.cpp \
 
 TESTFILES = \
 						main_data_buffer.cpp \
+						main_memento.cpp \
 
 
 #HDRS = $(addprefix $(INCSPATH), $(HDRSFILES))
